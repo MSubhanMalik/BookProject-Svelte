@@ -5,6 +5,10 @@
       link: "/",
     },
     {
+      name: "My Books",
+      link: "/my-books",
+    },
+    {
       name: "Store",
       link: "/store",
     },

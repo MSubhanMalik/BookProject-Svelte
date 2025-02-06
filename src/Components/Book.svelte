@@ -14,27 +14,27 @@
       alt=""
     />
   </div>
-  <div class = "flex h-1/2 gap-2 p-2 flex-col items-start">
-    <div class = "line-clamp-1">
+  <div class="flex h-1/2 gap-2 p-2 flex-col items-start">
+    <div class="line-clamp-1">
       <b>Title:</b>
       <span>{book.title}</span>
     </div>
-    <div class = "line-clamp-1">
+    <div class="line-clamp-1">
       <b>Author:</b>
       <span>{book.author}</span>
     </div>
-    <div class = "line-clamp-1">
+    <div class="line-clamp-1">
       <b>Date:</b>
       <span>
         {book.date}
       </span>
     </div>
-    <button class = "btn-primary w-fit px-2 self-end p-1 text-xs">Add</button>
+    <button class="btn-primary w-fit px-2 self-end p-1 text-xs">Add</button>
   </div>
 </div>
 
 <style>
-@import "tailwindcss";
+  @import "tailwindcss";
   div > span {
     @apply text-gray-500;
   }

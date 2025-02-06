@@ -3,6 +3,11 @@
 .btn-primary{
     @apply  duration-200 bg-indigo-400 cursor-pointer hover:font-bold rounded-xl text-white
 }
+
+.btn-white{
+  @apply  duration-200 bg-white cursor-pointer hover:font-bold rounded-xl text-indigo-400
+}
+
 .container {
   @apply mx-auto p-6;
 }
@@ -12,7 +17,7 @@
 }
 
 .heading {
-  @apply text-2xl font-bold text-white;
+  @apply text-2xl text-center font-bold;
 }
 
 .input-field {
