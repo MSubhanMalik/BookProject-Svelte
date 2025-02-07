@@ -48,10 +48,3 @@
     {/if}
   </div>
 </div>
-
-<style>
-  @import "tailwindcss";
-  div > span {
-    @apply text-gray-500;
-  }
-</style>

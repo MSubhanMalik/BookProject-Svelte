@@ -5,7 +5,7 @@
 </script>
 
 <div class="md:container">
-  <div class="flex-col-center min-h-90 text-4xl font-bold">
+  <div class="flex-col-center min-h-96 text-4xl font-bold">
     <div class="card h-auto w-auto">
       Welcome to <br /> <b class="text-indigo-400">Book</b>
       <strike class="">Store</strike>

@@ -4,11 +4,8 @@
   let showModal = $state(false);
 </script>
 
-<Button onclick={() => (showModal = true)}></Button>
-<Modal title="Hello World" bind:open={showModal} on:click = {()=> {showModal = false}}>
+<button onclick={() => (showModal = true)}>Hello World</button>
+
+<Modal title="Hello World" bind:open={showModal}>
   <div>Inside Body</div>
-  <svelte:fragment slot="footer">
-    <Button onclick={() => alert('Handle "success"')}>I accept</Button>
-    <Button color="alternative">Decline</Button>
-  </svelte:fragment>
 </Modal>
