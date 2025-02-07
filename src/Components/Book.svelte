@@ -1,9 +1,13 @@
 <script>
+  import Button from "./base/Button.svelte";
+  const { mode = "Add" } = $props();
   const book = {
     title: "Pride and Prejudice",
     date: "2024-04-20",
     author: "Muhammad Subhan",
   };
+  let text = $state("Add");
+  let disabled = $state(false);
 </script>
 
 <div class="shadow-xl h-60 md:h-64 w-40 md:w-48 text-black bg-white">
@@ -29,7 +33,19 @@
         {book.date}
       </span>
     </div>
-    <button class="btn-primary w-fit px-2 self-end p-1 text-xs">Add</button>
+    {#if mode == "Add"}
+      <Button
+        onclick={() => {
+          text = `<div class = "opacity-70 cursor-not-allowed">Added <i class = "fa-solid fa-check"></i></div>`;
+          disabled = true;
+        }}
+        {disabled}
+        padding="p-1 px-2"
+        width="w-fit text-xs ml-auto">{@html text}</Button
+      >
+    {:else}
+      <slot />
+    {/if}
   </div>
 </div>
 

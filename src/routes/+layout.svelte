@@ -8,7 +8,7 @@
 
 <div>
   <Header />
-  <div class = "flex justify-center">
+  <div class="flex justify-center">
     <slot />
   </div>
   <Footer />

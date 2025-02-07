@@ -35,12 +35,12 @@
     </a>
   </div>
   <div class="md:hidden ml-auto text-white">
-    <i onclick={() => (mobileOpenMenu = !mobileOpenMenu)} class="fa-solid fa-bars"></i>
+    <i onclick={() => (mobileOpenMenu = !mobileOpenMenu)} class="fa-solid fa-bars">
   </div>
   {#if mobileOpenMenu == true}
     <div class="w-full flex flex-col items-center gap-4 text-white font-semibold">
       {#each tabs as tab, index}
-        <a href={tab.link} class="cursor-pointer hover:text-white duration-200"
+        <a onclick = {()=> mobileOpenMenu = false} href={tab.link} class="cursor-pointer hover:text-white duration-200"
           >{tab.name}</a
         >
       {/each}
