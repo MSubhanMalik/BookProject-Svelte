@@ -10,6 +10,10 @@
   @apply  duration-200 bg-white cursor-pointer hover:font-bold rounded-xl text-indigo-400
 }
 
+.btn-red{
+  @apply  duration-200 bg-red-400 cursor-pointer hover:font-bold rounded-xl text-white
+}
+
 .container {
   @apply mx-auto p-6;
 }

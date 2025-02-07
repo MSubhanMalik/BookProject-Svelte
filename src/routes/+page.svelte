@@ -1,7 +1,11 @@
 <script>
+  import { onMount } from "svelte";
   import Button from "../Components/base/Button.svelte";
   import Input from "../Components/base/Input.svelte";
   import Book from "../Components/Book.svelte";
+  import { books, getAllBooks, loading } from "../States/app";
+  import Loader from "../Components/Loader.svelte";
+  onMount(getAllBooks())
 </script>
 
 <div class="md:container">
@@ -25,29 +29,29 @@
         <Button padding="p-3">Search</Button>
       </div>
       <div class="flex-col-center md:w-1/2 w-full gap-4">
-        <Book></Book>
-        <Book
-          ><Button padding="p-1 px-2" width="w-fit text-xs">Add</Button></Book
-        >
+       <Book />
+       <Book />
       </div>
     </div>
   </div>
 
   <div class="min-h-90 p-6 mt-4 flex-col-center flex-col">
     <h1 class="heading text-indigo-400">Your Favourites</h1>
+    <Loader />
     <div class="flex min-w-full gap-4 my-3 flex-wrap flex-col-center">
-      {#each [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-        <Book mode="custom">
-          <div class="flex gap-x-3 ml-auto">
-            <button aria-label="Info" class="cursor-pointer">
-              <i class="fa-solid text-green-700 fa-circle-info"></i></button
-            >
-            <button aria-label="Trash" class="cursor-pointer">
-              <i class="fa-solid text-red-700 fa-trash"></i></button
-            >
-          </div>
-        </Book>
-      {/each}
+        {#each $books.slice(0, 8) as book}
+          <Book book = {book} mode="custom">
+            <div class="flex gap-x-3 ml-auto">
+              <button aria-label="Info" class="cursor-pointer">
+              <!-- Remove these Icons -->
+                <i class="fa-solid text-green-700 fa-circle-info"></i></button
+              >
+              <button aria-label="Trash" class="cursor-pointer">
+                <i class="fa-solid text-red-700 fa-trash"></i></button
+              >
+            </div>
+          </Book>
+        {/each}
     </div>
     <a href="/my-books" class="btn-primary p-4 shadow-lg">See More</a>
   </div>
