@@ -1,6 +1,6 @@
 <script>
   import Button from "./base/Button.svelte";
-  const { mode = "Add", book } = $props();
+  const { mode = "Add", book, onclick = ()=>{} } = $props();
   let text = $state("Add");
   let disabled = $state(false);
 </script>
@@ -9,7 +9,7 @@
   <div class="h-1/2">
     <img
       class="h-full w-full object-cover"
-      src={book?.imageUrl ||
+      src={book?.imageId ||
         "https://images.unsplash.com/photo-1541963463532-d68292c34b19?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D"}
       alt=""
     />
@@ -32,6 +32,7 @@
     {#if mode == "Add"}
       <Button
         onclick={() => {
+          onclick();
           text = `<div class = "opacity-70 cursor-not-allowed">Added <i class = "fa-solid fa-check"></i></div>`;
           disabled = true;
         }}

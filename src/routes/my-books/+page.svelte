@@ -37,7 +37,7 @@
         <div class="flex p-2 w-full">
           <div class="md:w-1/3 w-1/2 flex justify-center">
             <img
-              src={selectedBook?.imageUrl}
+              src={selectedBook?.imageId}
               class="w-auto max-w-full max-h-64"
               alt=""
             />
@@ -84,7 +84,7 @@
       class={`flex-col-center w-full ${openInfo ? "md:w-1/2" : "md:w-full"} flex-wrap gap-4 md:gap-16 my-4`}
     >
       {#each $books as book}
-        <Book mode="custom" book = {book} image={book?.imageUrl}>
+        <Book mode="custom" book = {book} image={book?.imageId}>
           <div class="flex gap-x-3 ml-auto">
             <button
               onclick={() => {

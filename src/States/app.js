@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 import apiClient from "./../../../Client/api";
 import api from "../../../Client/constants";
+import axios from "axios";
 
 // Variables State
 const loading = writable(false);
@@ -17,7 +18,7 @@ export const getAllBooks = async () => {
     let data = (await response).data;
     data = data.map(async (book) => {
       let img = await getImage(book?.imageId);
-      book.imageUrl = img;
+      book.imageId = img;
       return book;
     });
     data = await Promise.all(data);
@@ -27,6 +28,42 @@ export const getAllBooks = async () => {
   } finally {
     loading.set(false);
   }
+};
+
+export const getGoogleBooks = async (title, authorName, category) => {
+  loading.set(true);
+  try {
+    return await axios.get(
+      `https://www.googleapis.com/books/v1/volumes?q=intitle:${
+        title || ""
+      }+inauthor:${authorName || ""}+subject:${
+        category || ""
+      }&key=AIzaSyAWOV-usR3dqEWOhJrW5teLnbuj-aO7F8Y`
+    );
+  } catch (error) {
+    console.log("Error: ", error.message)
+  }
+  finally{
+    loading.set(false)
+  }
+ 
+};
+
+export const sanitizeData = (books) => {
+  if (books?.length > 0) {
+    return books.map((book) => {
+      book = book.volumeInfo;
+      book.title = book.title;
+      book.authorName = book.authors ? book?.authors[0] : "";
+      book.imageId = book?.imageLinks?.thumbnail;
+      if (`${book.publishedDate}`.includes("-")) {
+        book.publishedDate = book.publishedDate.split("-")[0];
+      }
+      book.publishYear = book.publishedDate;
+      return book;
+    });
+  }
+  else return [];
 };
 
 export const getImage = async (_id) => {
@@ -49,7 +86,6 @@ export const getImage = async (_id) => {
 export const deleteBook = async (_id) => {
   loading.set(true);
   try {
-    console.log(_id);
     await apiClient.delete(api.endpoints.DELETE_BOOK, { data: { _id } });
     await getAllBooks();
   } catch (error) {
