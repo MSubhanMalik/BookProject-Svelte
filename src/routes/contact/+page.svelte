@@ -4,8 +4,12 @@
 
 <div class="min-h-90 w-full">
   <h1 class="heading">Contact Us</h1>
+  
+  <div class = "h-96 w-full flex-col-center bg-indigo-400 heading text-white">
+    Under Construction!!
+  </div>
   <div class = "flex w-full">
-  <div class="flex-col-center h-90 w-1/2 bg-indigo-400 flex gap-x-4">
+  <div class="hidden h-90 w-1/2 bg-indigo-400  gap-x-4">
     <div class="gap-x-4 flex-col-center">
       <div class="h-2/3">
         <form action="">
