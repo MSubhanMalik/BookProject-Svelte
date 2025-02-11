@@ -1,4 +1,4 @@
-module.exports = {
+const constants = {
     api: {
         endpoints: {
             CREATE_BOOK: "api/create-book", 
@@ -12,4 +12,13 @@ module.exports = {
     url: {
         baseURL: "http://localhost:3000/"
     }
+}
+
+const {
+   api, 
+   url 
+} = constants;
+
+export {
+    api, url
 }
