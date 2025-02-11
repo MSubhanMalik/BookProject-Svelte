@@ -5,10 +5,10 @@
   ></div>
 {/snippet}
 
-{#snippet Icon(icon, label)}
+{#snippet Icon(icon, label, link)}
   <div class="flex gap-x-2 text-lg items-center justify-start">
     <i class={`text-white ${icon} fa-lg`}></i>
-    <div class="hover:text-white duration-200 cursor-pointer">{label}</div>
+    <a href={link} class="hover:text-white duration-200 cursor-pointer">{label}</a>
   </div>
 {/snippet}
 
@@ -31,9 +31,9 @@
       <div class="md:w-64 w-1/2 h-full flex items-center md:justify-center p-2 flex-col">
         <div class="my-2 text-xl"><b>Visit</b></div>
         <div class="font-semibold">
-         {@render Icon("fa-solid fa-home", "Home")}
-         {@render Icon("fa-solid fa-store", "Store")}
-         {@render Icon("fa-brands fa-linkedin-in", "LinkedIn")}
+         {@render Icon("fa-solid fa-home", "Home", "/")}
+         {@render Icon("fa-solid fa-store", "Store", "/store")}
+         {@render Icon("fa-brands fa-linkedin-in", "LinkedIn", "https://www.linkedin.com/in/msubhanmalik/")}
         </div>
       </div>
     </div>
