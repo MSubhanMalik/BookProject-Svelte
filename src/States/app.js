@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import api from "../../../Client/constants";
 import axios from "axios";
-import { apiClient } from './../../api';
+import { apiClient } from './api';
 
 // Variables State
 const loading = writable(false);
