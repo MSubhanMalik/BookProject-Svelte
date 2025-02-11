@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import api from "../../../Client/constants";
+import api from "./constants";
 import axios from "axios";
 import { apiClient } from './api';
 
