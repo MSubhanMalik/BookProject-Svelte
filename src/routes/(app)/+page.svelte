@@ -1,16 +1,16 @@
 <script>
   import { onMount } from "svelte";
-  import Button from "../Components/base/Button.svelte";
-  import Input from "../Components/base/Input.svelte";
-  import Book from "../Components/Book.svelte";
+  import Button from "../../Components/base/Button.svelte";
+  import Input from "../../Components/base/Input.svelte";
+  import Book from "../../Components/Book.svelte";
+  import Loader from "../../Components/Loader.svelte";
   import {
     books,
     getAllBooks,
     getGoogleBooks,
     loading,
     sanitizeData,
-  } from "../States/app";
-  import Loader from "../Components/Loader.svelte";
+  } from "../../States/app";
   onMount(getAllBooks());
   let searchResults = $state([]);
   let title = $state("");
@@ -52,7 +52,7 @@
       <div class="flex-col-center md:w-1/2 w-full gap-4">
         {#if searchResults?.length > 0}
           {#each searchResults as book}
-            <Book {book} />
+            <Book {book} mode="custom" />
           {/each}
         {:else}
           <div class="heading text-white border p-2 rounded-lg">
@@ -67,17 +67,7 @@
     <h1 class="heading text-indigo-400">Your Favourites</h1>
     <div class="flex min-w-full gap-4 my-3 flex-wrap flex-col-center">
       {#each $books.slice(0, 8) as book}
-        <Book {book} mode="custom">
-          <div class="flex gap-x-3 ml-auto">
-            <button aria-label="Info" class="cursor-pointer">
-              <!-- Remove these Icons -->
-              <i class="fa-solid text-green-700 fa-circle-info"></i></button
-            >
-            <button aria-label="Trash" class="cursor-pointer">
-              <i class="fa-solid text-red-700 fa-trash"></i></button
-            >
-          </div>
-        </Book>
+        <Book {book} mode="custom" />
       {/each}
     </div>
     <a href="/my-books" class="btn-primary p-4 shadow-lg">See More</a>

@@ -1,9 +1,9 @@
 <script>
-  import Input from "../../Components/base/Input.svelte";
-  import Book from "../../Components/Book.svelte";
+  import Input from "../../../Components/base/Input.svelte";
+  import Book from "../../../Components/Book.svelte";
   import axios from "axios";
-  import { createBook, getGoogleBooks, loading, sanitizeData } from "../../States/app";
-  import Loader from "../../Components/Loader.svelte";
+  import { createBook, getGoogleBooks, loading, sanitizeData } from "../../../States/app";
+  import Loader from "../../../Components/Loader.svelte";
   let books = $state([]);
   let showFilters = $state(false);
   let title = $state("");

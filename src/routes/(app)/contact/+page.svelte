@@ -1,5 +1,5 @@
 <script>
-  import Input from "../../Components/base/Input.svelte";
+  import Input from "../../../Components/base/Input.svelte";
 </script>
 
 <div class="min-h-90 w-full">

@@ -1,15 +1,50 @@
 import { writable } from "svelte/store";
 import api from "./constants";
 import axios from "axios";
-import { apiClient } from './api';
+import { apiClient } from "./api";
+import { goto } from "$app/navigation";
+import { browser } from "$app/environment";
 
 // Variables State
 const loading = writable(false);
 const books = writable([]);
+const user = writable(null);
 
-export { loading, books };
+export { loading, books, user };
 
 // Functions
+
+export const redirectAuthGoogle = () => {
+  try {
+    window.location.href = `${api.url.baseUrl}${api.endpoints.AUTH_GOOGLE}`;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getUser = async () => {
+  try {
+    const data = await apiClient.get(api.endpoints.GET_USER);
+    console.log(data)
+    if (data.data.msg !== "Not Authorized") {
+      user.set(data.data);
+    } else {
+      window.location.href = "/login"
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const logoutUser = async () => {
+  try {
+    const msg = await apiClient.get(api.endpoints.LOGOUT_USER);
+    if(msg.data.msg == "Logged out successfully") window.location.href = '/login'
+  } catch (error) {
+    console.log(error)
+  }
+};
 
 export const getAllBooks = async () => {
   loading.set(true);
@@ -41,12 +76,10 @@ export const getGoogleBooks = async (title, authorName, category) => {
       }&key=AIzaSyAWOV-usR3dqEWOhJrW5teLnbuj-aO7F8Y`
     );
   } catch (error) {
-    console.log("Error: ", error.message)
+    console.log("Error: ", error.message);
+  } finally {
+    loading.set(false);
   }
-  finally{
-    loading.set(false)
-  }
- 
 };
 
 export const sanitizeData = (books) => {
@@ -62,8 +95,7 @@ export const sanitizeData = (books) => {
       book.publishYear = book.publishedDate;
       return book;
     });
-  }
-  else return [];
+  } else return [];
 };
 
 export const getImage = async (_id) => {
@@ -87,7 +119,7 @@ export const deleteBook = async (_id) => {
   loading.set(true);
   try {
     await apiClient.delete(api.endpoints.DELETE_BOOK, { data: { _id } });
-    await getAllBooks();
+    getAllBooks();
   } catch (error) {
     console.log(error);
   } finally {
@@ -103,7 +135,7 @@ export const createBook = async (formData) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    await getAllBooks();
+    getAllBooks();
   } catch (error) {
     console.log(error);
   } finally {
@@ -119,7 +151,7 @@ export const updateBook = async (formData) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    await getAllBooks();
+    getAllBooks();
   } catch (error) {
     console.log(error);
   } finally {

@@ -1,14 +1,14 @@
 <script>
   import { onMount } from "svelte";
-  import Button from "../../Components/base/Button.svelte";
-  import Book from "../../Components/Book.svelte";
-  import { books, loading, getAllBooks } from "../../States/app";
+  import Button from "../../../Components/base/Button.svelte";
+  import Book from "../../../Components/Book.svelte";
+  import { books, loading, getAllBooks } from "../../../States/app";
   import { Spinner } from "flowbite-svelte";
-  import BaseModal from "../../Components/base/BaseModal.svelte";
-  import CreateModal from "../../Components/Modals/CreateEditModal.svelte";
-  import Input from "../../Components/base/Input.svelte";
-  import DeleteModal from "../../Components/Modals/DeleteModal.svelte";
-  import Loader from "../../Components/Loader.svelte";
+  import BaseModal from "../../../Components/base/BaseModal.svelte";
+  import CreateModal from "../../../Components/Modals/CreateEditModal.svelte";
+  import Input from "../../../Components/base/Input.svelte";
+  import DeleteModal from "../../../Components/Modals/DeleteModal.svelte";
+  import Loader from "../../../Components/Loader.svelte";
   onMount(async () => {
     await getAllBooks();
   });

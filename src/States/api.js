@@ -1,6 +1,7 @@
 import axios from "axios";
-import api from "./constants";
+import api from "./constants.js";
 
 export const apiClient = axios.create({
-    baseURL: api.url.baseURL,
+    baseURL: api?.url.baseUrl,
+    withCredentials: true,
 })
