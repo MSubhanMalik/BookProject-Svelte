@@ -25,24 +25,24 @@ export const redirectAuthGoogle = () => {
 export const getUser = async () => {
   try {
     const data = await apiClient.get(api.endpoints.GET_USER);
-    console.log(data)
+    console.log(data);
     if (data.data.msg !== "Not Authorized") {
       user.set(data.data);
     } else {
-      window.location.href = "/login"
+      window.location.href = "/login";
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-
 export const logoutUser = async () => {
   try {
     const msg = await apiClient.get(api.endpoints.LOGOUT_USER);
-    if(msg.data.msg == "Logged out successfully") window.location.href = '/login'
+    if (msg.data.msg == "Logged out successfully")
+      window.location.href = "/login";
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -156,5 +156,15 @@ export const updateBook = async (formData) => {
     console.log(error);
   } finally {
     loading.set(false);
+  }
+};
+
+export const startChat = async (book, question) => {
+  try {
+    const res = await apiClient.post(api.endpoints.CHAT_AI, {
+      data: { book, question }});
+    return res.data;
+  } catch (error) {
+    console.error("Error starting chat:", error);
   }
 };

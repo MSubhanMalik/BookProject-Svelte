@@ -9,12 +9,14 @@
   import Input from "../../../Components/base/Input.svelte";
   import DeleteModal from "../../../Components/Modals/DeleteModal.svelte";
   import Loader from "../../../Components/Loader.svelte";
+  import ChatModal from "../../../Components/Modals/ChatModal.svelte";
   onMount(async () => {
     await getAllBooks();
   });
 
   let openCreateManual = $state(false);
   let openUpdateManual = $state(false);
+  let openChatBox = $state(false)
   let openDelete = $state(false);
   let selectedBook = $state({});
   let openInfo = $state(false);
@@ -99,6 +101,16 @@
             <button
               onclick={() => {
                 selectedBook = book;
+                openChatBox = true;
+              }}
+              aria-label="Update"
+              class="cursor-pointer"
+            >
+              <i class=" text-blue-400 fas fa-comment"></i></button
+            >
+            <button
+              onclick={() => {
+                selectedBook = book;
                 openDelete = true;
               }}
               aria-label="Trash"
@@ -123,6 +135,9 @@
   </div>
 </div>
 
+{#if openChatBox}
+  <ChatModal bind:open={openChatBox} book = {selectedBook}/>
+{/if}
 {#if openCreateManual}
   <CreateModal bind:open={openCreateManual} />
 {/if}

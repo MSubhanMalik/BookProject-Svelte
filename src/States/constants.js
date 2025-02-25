@@ -8,7 +8,8 @@ const api = {
         GET_IMAGE: "api/image/:id", 
         AUTH_GOOGLE: "api/auth/google",
         GET_USER: "api/auth/user",
-        LOGOUT_USER: "api/auth/logout"
+        LOGOUT_USER: "api/auth/logout",
+        CHAT_AI: "api/chat/"
     }, 
     url: {
         baseUrl: "http://localhost:3000/"
